@@ -26,12 +26,12 @@ async function register(req, res, next) {
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'Name, email, and password are required' });
     }
-    const existing = findByField('users.json', 'email', email.toLowerCase().trim());
+    const existing = await findByField('users.json', 'email', email.toLowerCase().trim());
     if (existing.length) {
       return res.status(409).json({ message: 'Email already registered on YATRA' });
     }
     const passwordHash = await bcrypt.hash(password, 10);
-    const user = insertOne('users.json', {
+    const user = await insertOne('users.json', {
       name: name.trim(),
       email: email.toLowerCase().trim(),
       passwordHash,
@@ -51,7 +51,7 @@ async function login(req, res, next) {
     if (!email || !password) {
       return res.status(400).json({ message: 'Email and password required' });
     }
-    const users = findByField('users.json', 'email', email.toLowerCase().trim());
+    const users = await findByField('users.json', 'email', email.toLowerCase().trim());
     const user = users[0];
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials' });
@@ -67,9 +67,9 @@ async function login(req, res, next) {
   }
 }
 
-function me(req, res, next) {
+async function me(req, res, next) {
   try {
-    const user = findById('users.json', req.userId);
+    const user = await findById('users.json', req.userId);
     if (!user) return res.status(404).json({ message: 'User not found' });
     res.json(sanitizeUser(user));
   } catch (e) {

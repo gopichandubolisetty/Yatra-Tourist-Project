@@ -42,7 +42,7 @@ function interpolateRoute(stops) {
   return waypoints;
 }
 
-function createTrip(req, res, next) {
+async function createTrip(req, res, next) {
   try {
     const { name, startTime, endTime, estimatedCost, stops: stopInput, currentLocation } =
       req.body;
@@ -53,7 +53,7 @@ function createTrip(req, res, next) {
     if (stopsArr.length > 5) {
       return res.status(400).json({ message: 'Maximum 5 stops allowed on YATRA' });
     }
-    const trip = insertOne('trips.json', {
+    const trip = await insertOne('trips.json', {
       userId: req.userId,
       name: String(name).trim(),
       startTime,
@@ -62,34 +62,36 @@ function createTrip(req, res, next) {
       estimatedCost: estimatedCost != null ? Number(estimatedCost) : 0,
       currentLocation: currentLocation || { lat: 0, lng: 0 },
     });
-    stopsArr.forEach((s, idx) => {
-      insertOne('stops.json', {
-        tripId: trip.id,
-        order: s.order != null ? s.order : idx + 1,
-        name: s.name || `Stop ${idx + 1}`,
-        address: s.address || '',
-        location: s.location || { lat: 0, lng: 0 },
-        type: s.type || 'WAYPOINT',
-      });
-    });
-    insertOne('notifications.json', {
+    await Promise.all(
+      stopsArr.map((s, idx) =>
+        insertOne('stops.json', {
+          tripId: trip.id,
+          order: s.order != null ? s.order : idx + 1,
+          name: s.name || `Stop ${idx + 1}`,
+          address: s.address || '',
+          location: s.location || { lat: 0, lng: 0 },
+          type: s.type || 'WAYPOINT',
+        })
+      )
+    );
+    await insertOne('notifications.json', {
       userId: req.userId,
       message: `🗺️ Your Yatra trip ${trip.name} has been planned!`,
       type: 'RIDE',
       read: false,
       sentAt: new Date().toISOString(),
     });
-    const allStops = findByField('stops.json', 'tripId', trip.id);
+    const allStops = await findByField('stops.json', 'tripId', trip.id);
     res.status(201).json({ ...trip, stops: allStops.sort((a, b) => a.order - b.order) });
   } catch (e) {
     next(e);
   }
 }
 
-function listTrips(req, res, next) {
+async function listTrips(req, res, next) {
   try {
-    const trips = readData('trips.json').filter((t) => t.userId === req.userId);
-    const stops = readData('stops.json');
+    const [tripsAll, stops] = await Promise.all([readData('trips.json'), readData('stops.json')]);
+    const trips = tripsAll.filter((t) => t.userId === req.userId);
     const withStops = trips.map((t) => ({
       ...t,
       stops: stops.filter((s) => s.tripId === t.id).sort((a, b) => a.order - b.order),
@@ -101,16 +103,16 @@ function listTrips(req, res, next) {
   }
 }
 
-function getTrip(req, res, next) {
+async function getTrip(req, res, next) {
   try {
-    const trip = findById('trips.json', req.params.id);
+    const trip = await findById('trips.json', req.params.id);
     if (!trip || trip.userId !== req.userId) {
       return res.status(404).json({ message: 'Trip not found' });
     }
-    const stops = findByField('stops.json', 'tripId', trip.id).sort(
+    const stops = (await findByField('stops.json', 'tripId', trip.id)).sort(
       (a, b) => a.order - b.order
     );
-    const bookings = readData('bookings.json').filter(
+    const bookings = (await readData('bookings.json')).filter(
       (b) => b.tripId === trip.id && b.userId === req.userId
     );
     res.json({ ...trip, stops, bookings });
@@ -119,9 +121,9 @@ function getTrip(req, res, next) {
   }
 }
 
-function updateTrip(req, res, next) {
+async function updateTrip(req, res, next) {
   try {
-    const trip = findById('trips.json', req.params.id);
+    const trip = await findById('trips.json', req.params.id);
     if (!trip || trip.userId !== req.userId) {
       return res.status(404).json({ message: 'Trip not found' });
     }
@@ -130,8 +132,8 @@ function updateTrip(req, res, next) {
     allowed.forEach((k) => {
       if (req.body[k] !== undefined) updates[k] = req.body[k];
     });
-    const updated = updateOne('trips.json', trip.id, updates);
-    const stops = findByField('stops.json', 'tripId', trip.id).sort(
+    const updated = await updateOne('trips.json', trip.id, updates);
+    const stops = (await findByField('stops.json', 'tripId', trip.id)).sort(
       (a, b) => a.order - b.order
     );
     res.json({ ...updated, stops });
@@ -140,26 +142,26 @@ function updateTrip(req, res, next) {
   }
 }
 
-function deleteTrip(req, res, next) {
+async function deleteTrip(req, res, next) {
   try {
-    const trip = findById('trips.json', req.params.id);
+    const trip = await findById('trips.json', req.params.id);
     if (!trip || trip.userId !== req.userId) {
       return res.status(404).json({ message: 'Trip not found' });
     }
-    updateOne('trips.json', trip.id, { status: 'CANCELLED' });
+    await updateOne('trips.json', trip.id, { status: 'CANCELLED' });
     res.json({ success: true, message: 'Trip cancelled on YATRA' });
   } catch (e) {
     next(e);
   }
 }
 
-function mockRoute(req, res, next) {
+async function mockRoute(req, res, next) {
   try {
-    const trip = findById('trips.json', req.params.id);
+    const trip = await findById('trips.json', req.params.id);
     if (!trip || trip.userId !== req.userId) {
       return res.status(404).json({ message: 'Trip not found' });
     }
-    const stops = findByField('stops.json', 'tripId', trip.id).sort(
+    const stops = (await findByField('stops.json', 'tripId', trip.id)).sort(
       (a, b) => a.order - b.order
     );
     if (stops.length < 2) {

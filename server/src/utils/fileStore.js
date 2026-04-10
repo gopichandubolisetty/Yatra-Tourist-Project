@@ -1,91 +1,82 @@
-const fs = require('fs');
-const path = require('path');
-const { generateId } = require('./generateId');
+const User = require('../models/User');
+const Trip = require('../models/Trip');
+const Stop = require('../models/Stop');
+const Booking = require('../models/Booking');
+const Payment = require('../models/Payment');
+const Notification = require('../models/Notification');
+const POI = require('../models/POI');
+const HotelBooking = require('../models/HotelBooking');
 
-const DATA_DIR = path.join(__dirname, '../../data');
+const modelMap = {
+  users: User,
+  'users.json': User,
+  trips: Trip,
+  'trips.json': Trip,
+  stops: Stop,
+  'stops.json': Stop,
+  bookings: Booking,
+  'bookings.json': Booking,
+  payments: Payment,
+  'payments.json': Payment,
+  notifications: Notification,
+  'notifications.json': Notification,
+  poi: POI,
+  'poi.json': POI,
+  hotelBookings: HotelBooking,
+  'hotelBookings.json': HotelBooking,
+};
 
-function ensureDataDir() {
-  try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-  } catch (e) {
-    console.error('fileStore ensureDataDir:', e.message);
+function getModel(filename) {
+  const key = String(filename || '').trim();
+  const Model = modelMap[key];
+  if (!Model) {
+    throw new Error(`Unknown data collection: ${filename}`);
   }
+  return Model;
 }
 
-function filePath(filename) {
-  return path.join(DATA_DIR, filename);
+async function readData(filename) {
+  const Model = getModel(filename);
+  return await Model.find({}).lean();
 }
 
-function readData(filename) {
-  ensureDataDir();
-  const fp = filePath(filename);
-  try {
-    if (!fs.existsSync(fp)) {
-      fs.writeFileSync(fp, '[]', 'utf8');
-      return [];
-    }
-    const raw = fs.readFileSync(fp, 'utf8');
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (e) {
-    console.error(`readData(${filename}):`, e.message);
-    return [];
+async function insertOne(filename, object) {
+  const Model = getModel(filename);
+  const doc = new Model(object);
+  const saved = await doc.save();
+  return saved.toObject();
+}
+
+async function findById(filename, id) {
+  const Model = getModel(filename);
+  return await Model.findOne({ id }).lean();
+}
+
+async function findByField(filename, field, value) {
+  const Model = getModel(filename);
+  return await Model.find({ [field]: value }).lean();
+}
+
+async function updateOne(filename, id, updates) {
+  const Model = getModel(filename);
+  return await Model.findOneAndUpdate({ id }, updates, { new: true }).lean();
+}
+
+async function deleteOne(filename, id) {
+  const Model = getModel(filename);
+  const result = await Model.findOneAndDelete({ id }).lean();
+  return !!result;
+}
+
+async function writeData(filename, data) {
+  const Model = getModel(filename);
+  if (!Array.isArray(data)) {
+    throw new Error('writeData expects an array');
   }
-}
-
-function writeData(filename, data) {
-  ensureDataDir();
-  const fp = filePath(filename);
-  try {
-    if (!Array.isArray(data)) {
-      throw new Error('writeData expects an array');
-    }
-    fs.writeFileSync(fp, JSON.stringify(data, null, 2), 'utf8');
-    return true;
-  } catch (e) {
-    console.error(`writeData(${filename}):`, e.message);
-    return false;
+  await Model.deleteMany({});
+  if (data.length) {
+    await Model.insertMany(data);
   }
-}
-
-function findById(filename, id) {
-  const items = readData(filename);
-  return items.find((item) => item.id === id) || null;
-}
-
-function findByField(filename, field, value) {
-  const items = readData(filename);
-  return items.filter((item) => item[field] === value);
-}
-
-function insertOne(filename, object) {
-  const items = readData(filename);
-  const row = {
-    ...object,
-    id: object.id || generateId(),
-    createdAt: object.createdAt || new Date().toISOString(),
-  };
-  items.push(row);
-  writeData(filename, items);
-  return row;
-}
-
-function updateOne(filename, id, updates) {
-  const items = readData(filename);
-  const idx = items.findIndex((item) => item.id === id);
-  if (idx === -1) return null;
-  items[idx] = { ...items[idx], ...updates, id: items[idx].id };
-  writeData(filename, items);
-  return items[idx];
-}
-
-function deleteOne(filename, id) {
-  const items = readData(filename);
-  const next = items.filter((item) => item.id !== id);
-  if (next.length === items.length) return false;
-  writeData(filename, next);
   return true;
 }
 
@@ -97,5 +88,4 @@ module.exports = {
   insertOne,
   updateOne,
   deleteOne,
-  DATA_DIR,
 };

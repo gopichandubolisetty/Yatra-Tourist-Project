@@ -1,4 +1,5 @@
 require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
+const connectDB = require('./src/utils/db');
 const http = require('http');
 const express = require('express');
 const cors = require('cors');
@@ -64,6 +65,9 @@ app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => {
-  console.log(`YATRA server running on port ${PORT}`);
+
+connectDB().then(() => {
+  server.listen(PORT, () => {
+    console.log(`YATRA server running on port ${PORT}`);
+  });
 });

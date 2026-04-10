@@ -24,7 +24,7 @@ function emitNotification(io, userId, message) {
   io.to(`user:${userId}`).emit('notification:new', { message, type: 'BOOKING' });
 }
 
-function createHotelBooking(req, res, next) {
+async function createHotelBooking(req, res, next) {
   try {
     const {
       poiId,
@@ -47,7 +47,7 @@ function createHotelBooking(req, res, next) {
       return res.status(400).json({ message: 'poiName and poiType (HOTEL or RESTAURANT) required' });
     }
 
-    const pois = readData('poi.json');
+    const pois = await readData('poi.json');
     const poi = poiId ? pois.find((p) => p.id === poiId) : null;
     const level = priceLevel || poi?.priceLevel || 'mid';
 
@@ -78,7 +78,7 @@ function createHotelBooking(req, res, next) {
       totalCost = Math.min(totalCost, clientTotalCost);
     }
 
-    const row = insertOne('hotelBookings.json', {
+    const row = await insertOne('hotelBookings.json', {
       userId: req.userId,
       poiId: poiId || poi?.id || null,
       poiName,
@@ -98,7 +98,7 @@ function createHotelBooking(req, res, next) {
       confirmationNumber: confirmationNumber(),
     });
 
-    const notif = insertOne('notifications.json', {
+    const notif = await insertOne('notifications.json', {
       userId: req.userId,
       message:
         poiType === 'HOTEL'
@@ -118,9 +118,9 @@ function createHotelBooking(req, res, next) {
   }
 }
 
-function listHotelBookings(req, res, next) {
+async function listHotelBookings(req, res, next) {
   try {
-    const list = readData('hotelBookings.json').filter((b) => b.userId === req.userId);
+    const list = (await readData('hotelBookings.json')).filter((b) => b.userId === req.userId);
     list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     res.json(list);
   } catch (e) {
@@ -128,16 +128,16 @@ function listHotelBookings(req, res, next) {
   }
 }
 
-function cancelHotelBooking(req, res, next) {
+async function cancelHotelBooking(req, res, next) {
   try {
-    const b = findById('hotelBookings.json', req.params.id);
+    const b = await findById('hotelBookings.json', req.params.id);
     if (!b || b.userId !== req.userId) {
       return res.status(404).json({ message: 'Booking not found' });
     }
     if (b.status === 'CANCELLED') {
       return res.json({ success: true, booking: b });
     }
-    const updated = updateOne('hotelBookings.json', b.id, {
+    const updated = await updateOne('hotelBookings.json', b.id, {
       status: 'CANCELLED',
       cancelledAt: new Date().toISOString(),
     });

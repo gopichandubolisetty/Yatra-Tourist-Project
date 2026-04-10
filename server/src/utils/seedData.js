@@ -3,65 +3,74 @@ require('dotenv').config({ path: require('path').join(__dirname, '../../../.env'
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
-const { readData, writeData, insertOne } = require('./fileStore');
-const { generateId } = require('./generateId');
+const connectDB = require('./db');
+const { readData, writeData, insertOne, findByField } = require('./fileStore');
+const User = require('../models/User');
+const Trip = require('../models/Trip');
+const Stop = require('../models/Stop');
 
 const DEMO_EMAIL = 'demo@yatra.com';
 const DEMO_PASSWORD = 'demo123';
 const DEMO_NAME = 'Demo Traveller';
 
-function ensurePoiFile() {
+function loadPoiFile() {
   const poiPath = path.join(__dirname, '../../data/poi.json');
   if (!fs.existsSync(poiPath)) {
     console.warn('poi.json missing — run full project setup');
-    return;
+    return [];
   }
   const pois = JSON.parse(fs.readFileSync(poiPath, 'utf8'));
   if (!Array.isArray(pois) || pois.length < 30) {
     console.warn('poi.json should have 30+ entries');
   }
+  return Array.isArray(pois) ? pois : [];
 }
 
 async function seed() {
-  ensurePoiFile();
+  await connectDB();
 
-  let users = readData('users.json');
-  let demo = users.find((u) => u.email === DEMO_EMAIL);
+  // Seed POI collection from the bundled JSON if empty/small.
+  const existingPois = await readData('poi.json');
+  if (!existingPois || existingPois.length < 30) {
+    const pois = loadPoiFile();
+    if (pois.length) {
+      await writeData('poi.json', pois);
+      console.log(`Seeded POIs: ${pois.length}`);
+    }
+  }
+
+  const demoEmail = DEMO_EMAIL.toLowerCase().trim();
+  let demo = (await findByField('users.json', 'email', demoEmail))[0];
 
   const passwordHash = await bcrypt.hash(DEMO_PASSWORD, 10);
 
   if (!demo) {
-    demo = insertOne('users.json', {
+    demo = await insertOne('users.json', {
       name: DEMO_NAME,
-      email: DEMO_EMAIL,
+      email: demoEmail,
       passwordHash,
       phone: '+91 98765 43210',
       preferences: { cuisine: ['South Indian', 'Hyderabadi'], priceLevel: 'mid' },
     });
     console.log('Created demo user:', DEMO_EMAIL);
   } else {
-    demo = { ...demo, passwordHash };
-    users = readData('users.json');
-    const idx = users.findIndex((u) => u.id === demo.id);
-    if (idx !== -1) {
-      users[idx].passwordHash = passwordHash;
-      writeData('users.json', users);
-    }
+    await User.updateOne({ id: demo.id }, { passwordHash });
     console.log('Updated demo user password');
+    demo = await User.findOne({ id: demo.id }).lean();
   }
 
   const demoId = demo.id;
 
-  let trips = readData('trips.json');
-  let stops = readData('stops.json');
-  const demoTripIds = trips.filter((t) => t.userId === demoId).map((t) => t.id);
-  trips = trips.filter((t) => t.userId !== demoId);
-  stops = stops.filter((s) => !demoTripIds.includes(s.tripId));
-  writeData('trips.json', trips);
-  writeData('stops.json', stops);
+  // Remove old demo trips/stops without touching other users.
+  const demoTrips = await Trip.find({ userId: demoId }).lean();
+  const demoTripIds = demoTrips.map((t) => t.id);
+  if (demoTripIds.length) {
+    await Stop.deleteMany({ tripId: { $in: demoTripIds } });
+    await Trip.deleteMany({ id: { $in: demoTripIds } });
+  }
 
   const now = new Date();
-  const trip1 = insertOne('trips.json', {
+  const trip1 = await insertOne('trips.json', {
     userId: demoId,
     name: 'Hyderabad Heritage Yatra',
     startTime: new Date(now.getTime() + 86400000).toISOString(),
@@ -71,7 +80,7 @@ async function seed() {
     currentLocation: { lat: 17.385, lng: 78.4867 },
   });
 
-  const trip2 = insertOne('trips.json', {
+  const trip2 = await insertOne('trips.json', {
     userId: demoId,
     name: 'Goa Beach Escape',
     startTime: new Date(now.getTime() - 7 * 86400000).toISOString(),
@@ -81,7 +90,7 @@ async function seed() {
     currentLocation: { lat: 15.2993, lng: 74.124 },
   });
 
-  const trip3 = insertOne('trips.json', {
+  const trip3 = await insertOne('trips.json', {
     userId: demoId,
     name: 'Vijayawada Culture & Heritage Yatra',
     startTime: new Date(now.getTime() + 2 * 86400000).toISOString(),
@@ -188,11 +197,13 @@ async function seed() {
     },
   ];
 
-  stopsT1.forEach((s) => insertOne('stops.json', s));
-  stopsT2.forEach((s) => insertOne('stops.json', s));
-  stopsT3.forEach((s) => insertOne('stops.json', s));
+  await Promise.all([
+    ...stopsT1.map((s) => insertOne('stops.json', s)),
+    ...stopsT2.map((s) => insertOne('stops.json', s)),
+    ...stopsT3.map((s) => insertOne('stops.json', s)),
+  ]);
 
-  insertOne('notifications.json', {
+  await insertOne('notifications.json', {
     userId: demoId,
     message: `🗺️ Your Yatra trip ${trip1.name} has been planned!`,
     type: 'RIDE',
@@ -200,7 +211,7 @@ async function seed() {
     sentAt: new Date().toISOString(),
   });
 
-  insertOne('notifications.json', {
+  await insertOne('notifications.json', {
     userId: demoId,
     message: `🏛️ ${trip3.name} is ready — explore Kanaka Durga, the Barrage & Undavalli!`,
     type: 'RIDE',

@@ -43,8 +43,8 @@ function priceAuto(distanceKm) {
   return Math.round(30 + distanceKm * 8);
 }
 
-function getTripDistance(tripId) {
-  const stops = findByField('stops.json', 'tripId', tripId).sort(
+async function getTripDistance(tripId) {
+  const stops = (await findByField('stops.json', 'tripId', tripId)).sort(
     (a, b) => a.order - b.order
   );
   if (stops.length < 2) return 5;
@@ -77,17 +77,17 @@ function emitNotification(io, userId, payload) {
   io.to(`user:${userId}`).emit('notification:new', payload);
 }
 
-function createOrPreviewBooking(req, res, next) {
+async function createOrPreviewBooking(req, res, next) {
   try {
     const { tripId, preview } = req.body;
     if (!tripId) {
       return res.status(400).json({ message: 'tripId required' });
     }
-    const trip = findById('trips.json', tripId);
+    const trip = await findById('trips.json', tripId);
     if (!trip || trip.userId !== req.userId) {
       return res.status(404).json({ message: 'Trip not found' });
     }
-    const distanceKm = getTripDistance(tripId);
+    const distanceKm = await getTripDistance(tripId);
     const options = buildOptions(distanceKm);
 
     if (preview) {
@@ -105,7 +105,7 @@ function createOrPreviewBooking(req, res, next) {
     );
     const finalCost = match ? match.cost : cost != null ? Number(cost) : priceCab(distanceKm, 1);
 
-    const booking = insertOne('bookings.json', {
+    const booking = await insertOne('bookings.json', {
       tripId,
       userId: req.userId,
       provider,
@@ -123,7 +123,7 @@ function createOrPreviewBooking(req, res, next) {
     });
 
     const io = req.app.get('io');
-    const notif = insertOne('notifications.json', {
+    const notif = await insertOne('notifications.json', {
       userId: req.userId,
       message: `Booking created with ${provider} on YATRA — complete payment to confirm`,
       type: 'RIDE',
@@ -141,9 +141,9 @@ function createOrPreviewBooking(req, res, next) {
   }
 }
 
-function listBookings(req, res, next) {
+async function listBookings(req, res, next) {
   try {
-    const list = readData('bookings.json').filter((b) => b.userId === req.userId);
+    const list = (await readData('bookings.json')).filter((b) => b.userId === req.userId);
     list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     res.json(list);
   } catch (e) {
@@ -151,29 +151,29 @@ function listBookings(req, res, next) {
   }
 }
 
-function getBooking(req, res, next) {
+async function getBooking(req, res, next) {
   try {
-    const b = findById('bookings.json', req.params.id);
+    const b = await findById('bookings.json', req.params.id);
     if (!b || b.userId !== req.userId) {
       return res.status(404).json({ message: 'Booking not found' });
     }
-    const trip = findById('trips.json', b.tripId);
+    const trip = await findById('trips.json', b.tripId);
     res.json({ ...b, trip: trip || null });
   } catch (e) {
     next(e);
   }
 }
 
-function cancelBooking(req, res, next) {
+async function cancelBooking(req, res, next) {
   try {
-    const b = findById('bookings.json', req.params.id);
+    const b = await findById('bookings.json', req.params.id);
     if (!b || b.userId !== req.userId) {
       return res.status(404).json({ message: 'Booking not found' });
     }
-    const payments = readData('payments.json').filter((p) => p.bookingId === b.id);
+    const payments = (await readData('payments.json')).filter((p) => p.bookingId === b.id);
     const paid = payments.some((p) => p.status === 'SUCCESS');
     if (paid) {
-      insertOne('payments.json', {
+      await insertOne('payments.json', {
         bookingId: b.id,
         amount: b.cost,
         status: 'SUCCESS',
@@ -183,7 +183,7 @@ function cancelBooking(req, res, next) {
         note: 'Refund processed (mock)',
       });
     }
-    updateOne('bookings.json', b.id, { status: 'CANCELLED' });
+    await updateOne('bookings.json', b.id, { status: 'CANCELLED' });
     const io = req.app.get('io');
     emitNotification(io, req.userId, {
       message: `Your Yatra booking with ${b.provider} was cancelled`,

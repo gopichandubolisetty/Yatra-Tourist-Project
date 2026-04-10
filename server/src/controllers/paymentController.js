@@ -49,9 +49,9 @@ function randomPlate() {
 /**
  * Rich driver assignment for post-payment UX (pickup-based location offset).
  */
-function generateDriverInfo(booking) {
-  const trip = findById('trips.json', booking.tripId);
-  const stops = findByField('stops.json', 'tripId', booking.tripId).sort((a, b) => a.order - b.order);
+async function generateDriverInfo(booking) {
+  const trip = await findById('trips.json', booking.tripId);
+  const stops = (await findByField('stops.json', 'tripId', booking.tripId)).sort((a, b) => a.order - b.order);
   const pickup = stops.find((s) => s.type === 'PICKUP') || stops[0];
   const baseLat = pickup?.location?.lat ?? trip?.currentLocation?.lat ?? 16.5062;
   const baseLng = pickup?.location?.lng ?? trip?.currentLocation?.lng ?? 80.648;
@@ -99,7 +99,7 @@ async function processPayment(req, res, next) {
     if (!bookingId || amount == null || !method) {
       return res.status(400).json({ message: 'bookingId, amount, and method required' });
     }
-    const booking = findById('bookings.json', bookingId);
+    const booking = await findById('bookings.json', bookingId);
     if (!booking || booking.userId !== req.userId) {
       return res.status(404).json({ message: 'Booking not found' });
     }
@@ -110,7 +110,7 @@ async function processPayment(req, res, next) {
     const txnId = `YATRA-TXN-${uuidv4()}`;
 
     if (!success) {
-      insertOne('payments.json', {
+      await insertOne('payments.json', {
         bookingId,
         amount: Number(amount),
         status: 'FAILED',
@@ -125,7 +125,7 @@ async function processPayment(req, res, next) {
       });
     }
 
-    insertOne('payments.json', {
+    await insertOne('payments.json', {
       bookingId,
       amount: Number(amount),
       status: 'SUCCESS',
@@ -135,16 +135,16 @@ async function processPayment(req, res, next) {
       meta: { cardLast4, upiId },
     });
 
-    const driverInfo = generateDriverInfo(booking);
+    const driverInfo = await generateDriverInfo(booking);
 
-    updateOne('bookings.json', bookingId, {
+    await updateOne('bookings.json', bookingId, {
       status: 'CONFIRMED',
       driverInfo,
     });
 
     const amt = Number(amount);
     const msg = `🎉 Yatra Ride Confirmed! Driver ${driverInfo.name} is on the way in ${driverInfo.vehicle} (₹${amt} paid)`;
-    const notif = insertOne('notifications.json', {
+    const notif = await insertOne('notifications.json', {
       userId: req.userId,
       message: msg,
       type: 'RIDE',
@@ -152,7 +152,7 @@ async function processPayment(req, res, next) {
       sentAt: new Date().toISOString(),
     });
 
-    insertOne('notifications.json', {
+    await insertOne('notifications.json', {
       userId: req.userId,
       message: `✅ Payment of ₹${amt} received. Transaction ID: ${txnId}`,
       type: 'RIDE',
@@ -178,12 +178,12 @@ async function processPayment(req, res, next) {
   }
 }
 
-function listPayments(req, res, next) {
+async function listPayments(req, res, next) {
   try {
     const myBookingIds = new Set(
-      readData('bookings.json').filter((b) => b.userId === req.userId).map((b) => b.id)
+      (await readData('bookings.json')).filter((b) => b.userId === req.userId).map((b) => b.id)
     );
-    const payments = readData('payments.json').filter((p) => myBookingIds.has(p.bookingId));
+    const payments = (await readData('payments.json')).filter((p) => myBookingIds.has(p.bookingId));
     payments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     res.json(payments);
   } catch (e) {

@@ -12,7 +12,7 @@ function haversineKm(lat1, lng1, lat2, lng2) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
-function nearby(req, res, next) {
+async function nearby(req, res, next) {
   try {
     const lat = parseFloat(req.query.lat);
     const lng = parseFloat(req.query.lng);
@@ -25,7 +25,7 @@ function nearby(req, res, next) {
     const cuisine = req.query.cuisine;
     const priceLevel = req.query.priceLevel;
 
-    let pois = readData('poi.json');
+    let pois = await readData('poi.json');
     pois = pois.map((p) => ({
       ...p,
       distanceKm: haversineKm(lat, lng, p.location.lat, p.location.lng),
