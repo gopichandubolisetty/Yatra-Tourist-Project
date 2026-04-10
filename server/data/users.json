@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Demo Traveller",
+    "email": "demo@yatra.com",
+    "passwordHash": "$2a$10$D9EiEBZdh..Kf2oSuzCB..94MV6hRE5gunTbSXzQCmnMoxPFXUXa.",
+    "phone": "+91 98765 43210",
+    "preferences": {
+      "cuisine": [
+        "South Indian",
+        "Hyderabadi"
+      ],
+      "priceLevel": "mid"
+    },
+    "id": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "createdAt": "2026-04-10T05:02:55.886Z"
+  },
+  {
+    "name": "Gopi Chandu Bolisetty",
+    "email": "kavach4all@gmail.com",
+    "passwordHash": "$2a$10$nOEyyI3DqLC3b836PNsDe.K7iT6upXqDGfJS71SjZZ/hfL.ePNvqW",
+    "phone": "123456789",
+    "preferences": {
+      "cuisine": [],
+      "priceLevel": "mid"
+    },
+    "id": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "createdAt": "2026-04-10T05:04:46.674Z"
+  }
+]

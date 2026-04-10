@@ -1,0 +1,114 @@
+[
+  {
+    "userId": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "name": "Trip to GOA",
+    "startTime": "2026-04-10T05:05:00.000Z",
+    "endTime": "2026-04-24T18:06:00.000Z",
+    "status": "CANCELLED",
+    "estimatedCost": 0,
+    "currentLocation": {
+      "lat": 0,
+      "lng": 0
+    },
+    "id": "eb239684-7989-4213-a8a8-afc27388aeb0",
+    "createdAt": "2026-04-10T05:06:51.427Z"
+  },
+  {
+    "userId": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "name": "GOA TO SURYALANKA",
+    "startTime": "2026-04-10T18:10:00.000Z",
+    "endTime": "2026-04-13T05:09:00.000Z",
+    "status": "CANCELLED",
+    "estimatedCost": 0,
+    "currentLocation": {
+      "lat": 0,
+      "lng": 0
+    },
+    "id": "a89bc456-78f2-4010-b19b-e0f7ab0bbbfd",
+    "createdAt": "2026-04-10T05:10:40.012Z"
+  },
+  {
+    "userId": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "name": "VITAP TO GOA",
+    "startTime": "2026-04-10T05:22:00.000Z",
+    "endTime": "2026-04-17T05:22:00.000Z",
+    "status": "CANCELLED",
+    "estimatedCost": 0,
+    "currentLocation": {
+      "lat": 0,
+      "lng": 0
+    },
+    "id": "19547721-899f-4376-9a3f-18f55a585570",
+    "createdAt": "2026-04-10T05:24:43.120Z"
+  },
+  {
+    "userId": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "name": "VITAP TO GOA",
+    "startTime": "2026-04-10T05:27:00.000Z",
+    "endTime": "2026-04-17T05:27:00.000Z",
+    "status": "CANCELLED",
+    "estimatedCost": 0,
+    "currentLocation": {
+      "lat": 0,
+      "lng": 0
+    },
+    "id": "bcac61cd-1444-4cf9-87c5-bb13144afbcc",
+    "createdAt": "2026-04-10T05:27:46.978Z"
+  },
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "name": "Hyderabad Heritage Yatra",
+    "startTime": "2026-04-11T05:42:28.705Z",
+    "endTime": "2026-04-13T05:42:28.705Z",
+    "status": "PLANNED",
+    "estimatedCost": 2450,
+    "currentLocation": {
+      "lat": 17.385,
+      "lng": 78.4867
+    },
+    "id": "90f35088-c809-463a-ab33-f691e4f63f04",
+    "createdAt": "2026-04-10T05:42:28.708Z"
+  },
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "name": "Goa Beach Escape",
+    "startTime": "2026-04-03T05:42:28.705Z",
+    "endTime": "2026-04-05T05:42:28.705Z",
+    "status": "COMPLETED",
+    "estimatedCost": 8900,
+    "currentLocation": {
+      "lat": 15.2993,
+      "lng": 74.124
+    },
+    "id": "23b013aa-677f-46ef-b0e0-c8b7fa816608",
+    "createdAt": "2026-04-10T05:42:28.712Z"
+  },
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "name": "Vijayawada Culture & Heritage Yatra",
+    "startTime": "2026-04-12T05:42:28.705Z",
+    "endTime": "2026-04-13T05:42:28.705Z",
+    "status": "PLANNED",
+    "estimatedCost": 3200,
+    "currentLocation": {
+      "lat": 16.5062,
+      "lng": 80.648
+    },
+    "id": "fa8780a7-77b6-4d55-bbb1-7b788ff8cb81",
+    "createdAt": "2026-04-10T05:42:28.715Z"
+  },
+  {
+    "userId": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "name": "VIT TO GOA",
+    "startTime": "2026-04-22T05:47:00.000Z",
+    "endTime": "2026-05-01T05:47:00.000Z",
+    "status": "PLANNED",
+    "estimatedCost": 0,
+    "currentLocation": {
+      "lat": 0,
+      "lng": 0
+    },
+    "id": "72a094a3-9632-497a-85f9-b55a538ad4cb",
+    "createdAt": "2026-04-10T05:47:36.788Z"
+  }
+]

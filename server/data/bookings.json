@@ -1,0 +1,99 @@
+[
+  {
+    "tripId": "eb239684-7989-4213-a8a8-afc27388aeb0",
+    "userId": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "provider": "YatraRide",
+    "vehicleType": "Sedan",
+    "cost": 9581,
+    "status": "CANCELLED",
+    "pickupTime": "2026-04-10T05:06:55.956Z",
+    "driverInfo": {
+      "name": "Mohammed Salim",
+      "phone": "+91 9960033001",
+      "vehicle": "Maruti Swift - Silver",
+      "plate": "DL 01 CD 8899",
+      "rating": 4.785756362187965
+    },
+    "id": "d48dbd5d-2776-4d35-aab8-11ca7b28f5b5",
+    "createdAt": "2026-04-10T05:06:55.957Z"
+  },
+  {
+    "tripId": "a89bc456-78f2-4010-b19b-e0f7ab0bbbfd",
+    "userId": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "provider": "BharatDrive",
+    "vehicleType": "Van",
+    "cost": 16593,
+    "status": "CANCELLED",
+    "pickupTime": "2026-04-10T05:10:51.062Z",
+    "driverInfo": {
+      "name": "Suresh Babu",
+      "phone": "+91 9144511557",
+      "vehicle": "Toyota Innova - Grey",
+      "plate": "TS 09 AB 1234",
+      "rating": 4.867848869681443
+    },
+    "id": "c307b92d-afdd-48d4-a0ca-b7636135cb1a",
+    "createdAt": "2026-04-10T05:10:51.063Z"
+  },
+  {
+    "tripId": "19547721-899f-4376-9a3f-18f55a585570",
+    "userId": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "provider": "SwiftCab",
+    "vehicleType": "SUV",
+    "cost": 20431,
+    "status": "CONFIRMED",
+    "pickupTime": "2026-04-10T05:24:47.872Z",
+    "driverInfo": {
+      "name": "Priya Sharma",
+      "phone": "+91 9261136392",
+      "vehicle": "Mahindra XUV300 - Black",
+      "plate": "KA 05 MN 6789",
+      "rating": 4.558849627141311
+    },
+    "id": "2a9b28b3-90c1-4dd5-8ceb-35d49421adc9",
+    "createdAt": "2026-04-10T05:24:47.873Z"
+  },
+  {
+    "tripId": "bcac61cd-1444-4cf9-87c5-bb13144afbcc",
+    "userId": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "provider": "YatraRide",
+    "vehicleType": "Sedan",
+    "cost": 8607,
+    "status": "CONFIRMED",
+    "pickupTime": "2026-04-10T05:27:49.384Z",
+    "driverInfo": {
+      "name": "Lakshmi Devi",
+      "phone": "+91 9155764362",
+      "vehicle": "Hyundai Creta - Blue",
+      "plate": "DL 01 CD 8899",
+      "rating": 4.909599547417346
+    },
+    "id": "777197c2-c0f1-4fd0-941c-31f1f13e5993",
+    "createdAt": "2026-04-10T05:27:49.384Z"
+  },
+  {
+    "tripId": "72a094a3-9632-497a-85f9-b55a538ad4cb",
+    "userId": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "provider": "SwiftCab",
+    "vehicleType": "SUV",
+    "cost": 12030,
+    "status": "CONFIRMED",
+    "pickupTime": "2026-04-10T05:47:43.478Z",
+    "driverInfo": {
+      "name": "Suresh Babu",
+      "vehicle": "Hyundai Creta - Blue",
+      "plate": "KA 74 PQ 3692",
+      "phone": "+91 62829 24988",
+      "rating": 4.6,
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Suresh%20Babu",
+      "eta": "5 minutes",
+      "currentLocation": {
+        "lat": 16.480282,
+        "lng": 80.52737
+      },
+      "locationName": "Near Bus Stand, 522237"
+    },
+    "id": "2315ea4f-3be8-491b-b002-08a4be44dd33",
+    "createdAt": "2026-04-10T05:47:43.479Z"
+  }
+]

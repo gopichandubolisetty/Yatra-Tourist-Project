@@ -1,0 +1,92 @@
+[
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "message": "🗺️ Your Yatra trip Hyderabad Heritage Yatra has been planned!",
+    "type": "RIDE",
+    "read": false,
+    "sentAt": "2026-04-10T05:02:55.946Z",
+    "id": "02f3df19-3587-49cc-9fa5-e7c531b51911",
+    "createdAt": "2026-04-10T05:02:55.946Z"
+  },
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "message": "🗺️ Your Yatra trip Hyderabad Heritage Yatra has been planned!",
+    "type": "RIDE",
+    "read": false,
+    "sentAt": "2026-04-10T05:38:41.484Z",
+    "id": "eb8ad354-5d8b-4ae4-9602-fcb5da5bb7ea",
+    "createdAt": "2026-04-10T05:38:41.484Z"
+  },
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "message": "🏛️ Vijayawada Culture & Heritage Yatra is ready — explore Kanaka Durga, the Barrage & Undavalli!",
+    "type": "RIDE",
+    "read": false,
+    "sentAt": "2026-04-10T05:38:41.485Z",
+    "id": "e5d727ae-b8d3-4616-9d9f-c8f601e21439",
+    "createdAt": "2026-04-10T05:38:41.486Z"
+  },
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "message": "🗺️ Your Yatra trip Hyderabad Heritage Yatra has been planned!",
+    "type": "RIDE",
+    "read": false,
+    "sentAt": "2026-04-10T05:42:08.227Z",
+    "id": "bb529eca-5c78-4b3f-92e3-a4118fdd49d8",
+    "createdAt": "2026-04-10T05:42:08.227Z"
+  },
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "message": "🏛️ Vijayawada Culture & Heritage Yatra is ready — explore Kanaka Durga, the Barrage & Undavalli!",
+    "type": "RIDE",
+    "read": false,
+    "sentAt": "2026-04-10T05:42:08.229Z",
+    "id": "b9d5c82b-121f-446e-943a-294ad9f4f367",
+    "createdAt": "2026-04-10T05:42:08.229Z"
+  },
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "message": "🗺️ Your Yatra trip Hyderabad Heritage Yatra has been planned!",
+    "type": "RIDE",
+    "read": false,
+    "sentAt": "2026-04-10T05:42:28.749Z",
+    "id": "026810fd-26b7-4558-999a-4509cf49ca1d",
+    "createdAt": "2026-04-10T05:42:28.750Z"
+  },
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "message": "🏛️ Vijayawada Culture & Heritage Yatra is ready — explore Kanaka Durga, the Barrage & Undavalli!",
+    "type": "RIDE",
+    "read": false,
+    "sentAt": "2026-04-10T05:42:28.752Z",
+    "id": "921a163b-bac0-4955-8168-24ca7fddd3ff",
+    "createdAt": "2026-04-10T05:42:28.752Z"
+  },
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "message": "🏨 YATRA hotel booking confirmed: Novotel Vijayawada Varun — YATRA-HTL-084860 (₹16000)",
+    "type": "BOOKING",
+    "read": false,
+    "sentAt": "2026-04-10T06:07:11.736Z",
+    "id": "5ed3d15b-8e7f-4427-be0d-6bc0b95d626c",
+    "createdAt": "2026-04-10T06:07:11.737Z"
+  },
+  {
+    "userId": "f4111e1a-f15a-4b52-a9e4-eb627c1be3b1",
+    "message": "🏨 YATRA hotel booking confirmed: Novotel Vijayawada Varun — YATRA-HTL-223945 (₹16000)",
+    "type": "BOOKING",
+    "read": false,
+    "sentAt": "2026-04-10T06:08:31.732Z",
+    "id": "d672160c-cfc5-4bcf-a224-bbcc028df6b2",
+    "createdAt": "2026-04-10T06:08:31.733Z"
+  },
+  {
+    "userId": "5a110128-5b5d-4271-ac9b-4072bd9f274a",
+    "message": "🏨 YATRA hotel booking confirmed: Taj Falaknuma Palace — YATRA-HTL-031619 (₹24000)",
+    "type": "BOOKING",
+    "read": false,
+    "sentAt": "2026-04-10T07:02:20.110Z",
+    "id": "47c39319-98a1-4aa3-b245-1ee7f851b000",
+    "createdAt": "2026-04-10T07:02:20.110Z"
+  }
+]

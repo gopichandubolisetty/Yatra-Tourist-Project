@@ -1,0 +1,379 @@
+[
+  {
+    "tripId": "eb239684-7989-4213-a8a8-afc27388aeb0",
+    "order": 1,
+    "name": "Goa, India",
+    "address": "Goa, India",
+    "location": {
+      "lat": 15.3004543,
+      "lng": 74.0855134
+    },
+    "type": "PICKUP",
+    "id": "d2501c4d-c3e3-41e7-b43b-734322aa3d5a",
+    "createdAt": "2026-04-10T05:06:51.430Z"
+  },
+  {
+    "tripId": "eb239684-7989-4213-a8a8-afc27388aeb0",
+    "order": 2,
+    "name": "Open Air Theater, University of Hyderbad",
+    "address": "Open Air Theater, University of Hyderbad, Library Road, Masjid Banda, Hyderabad, Serilingampalle mandal, Ranga Reddy, Telangana, 500046, India",
+    "location": {
+      "lat": 17.4538378,
+      "lng": 78.3333886
+    },
+    "type": "WAYPOINT",
+    "id": "6cc44ba7-5a13-4f6c-a72c-4f529dbf99ad",
+    "createdAt": "2026-04-10T05:06:51.433Z"
+  },
+  {
+    "tripId": "eb239684-7989-4213-a8a8-afc27388aeb0",
+    "order": 3,
+    "name": "Bapatla, Andhra Pradesh",
+    "address": "Bapatla, Andhra Pradesh, India",
+    "location": {
+      "lat": 15.9344304,
+      "lng": 80.4505522
+    },
+    "type": "WAYPOINT",
+    "id": "d6a6b5ad-64c4-4a06-a1e6-1a667fda8759",
+    "createdAt": "2026-04-10T05:06:51.435Z"
+  },
+  {
+    "tripId": "a89bc456-78f2-4010-b19b-e0f7ab0bbbfd",
+    "order": 1,
+    "name": "Goa, India",
+    "address": "Goa, India",
+    "location": {
+      "lat": 15.3004543,
+      "lng": 74.0855134
+    },
+    "type": "PICKUP",
+    "id": "88dec2c9-e73b-458f-a1d2-4d63f2e5f4c3",
+    "createdAt": "2026-04-10T05:10:40.015Z"
+  },
+  {
+    "tripId": "a89bc456-78f2-4010-b19b-e0f7ab0bbbfd",
+    "order": 2,
+    "name": "Hyderabad, Bahadurpura mandal",
+    "address": "Hyderabad, Bahadurpura mandal, Hyderabad, Telangana, India",
+    "location": {
+      "lat": 17.360589,
+      "lng": 78.4740613
+    },
+    "type": "WAYPOINT",
+    "id": "b1503fc4-e3d4-47fd-9805-4c4b9608ec02",
+    "createdAt": "2026-04-10T05:10:40.018Z"
+  },
+  {
+    "tripId": "a89bc456-78f2-4010-b19b-e0f7ab0bbbfd",
+    "order": 3,
+    "name": "Suryalanka, Bapatla",
+    "address": "Suryalanka, Bapatla, Andhra Pradesh, India",
+    "location": {
+      "lat": 15.844327,
+      "lng": 80.5060078
+    },
+    "type": "WAYPOINT",
+    "id": "b380f161-3336-4bd8-8770-78c36cb12571",
+    "createdAt": "2026-04-10T05:10:40.020Z"
+  },
+  {
+    "tripId": "a89bc456-78f2-4010-b19b-e0f7ab0bbbfd",
+    "order": 4,
+    "name": "Chirala beach, Ramapuram",
+    "address": "Chirala beach, Ramapuram, India",
+    "location": {
+      "lat": 15.7754894,
+      "lng": 80.3828623
+    },
+    "type": "WAYPOINT",
+    "id": "70c340ad-6ed7-46fd-b35f-02f00c378189",
+    "createdAt": "2026-04-10T05:10:40.022Z"
+  },
+  {
+    "tripId": "19547721-899f-4376-9a3f-18f55a585570",
+    "order": 1,
+    "name": "Guntur, Andhra Pradesh",
+    "address": "Guntur, Andhra Pradesh, 522001, India",
+    "location": {
+      "lat": 16.2915189,
+      "lng": 80.4541588
+    },
+    "type": "PICKUP",
+    "id": "94b65112-f24c-4ff0-a3c8-7a6b95f27d44",
+    "createdAt": "2026-04-10T05:24:43.123Z"
+  },
+  {
+    "tripId": "19547721-899f-4376-9a3f-18f55a585570",
+    "order": 2,
+    "name": "VIT-AP University, Footpath to MH2",
+    "address": "VIT-AP University, Footpath to MH2, Ainavolu, Amaravati, Thullur, Guntur, Andhra Pradesh, 522237, India",
+    "location": {
+      "lat": 16.4928035,
+      "lng": 80.4982427
+    },
+    "type": "WAYPOINT",
+    "id": "f381b144-2385-498b-b532-20d1942ec60b",
+    "createdAt": "2026-04-10T05:24:43.126Z"
+  },
+  {
+    "tripId": "19547721-899f-4376-9a3f-18f55a585570",
+    "order": 3,
+    "name": "Hyderabad, Bahadurpura mandal",
+    "address": "Hyderabad, Bahadurpura mandal, Hyderabad, Telangana, India",
+    "location": {
+      "lat": 17.360589,
+      "lng": 78.4740613
+    },
+    "type": "WAYPOINT",
+    "id": "4fa8d94e-d65c-4d64-9569-5dffe1f36880",
+    "createdAt": "2026-04-10T05:24:43.128Z"
+  },
+  {
+    "tripId": "19547721-899f-4376-9a3f-18f55a585570",
+    "order": 4,
+    "name": "Bengaluru, Bangalore North",
+    "address": "Bengaluru, Bangalore North, Bengaluru Urban, Karnataka, India",
+    "location": {
+      "lat": 12.9767936,
+      "lng": 77.590082
+    },
+    "type": "WAYPOINT",
+    "id": "863a3f4f-61c3-45fe-8427-bb1934fba81b",
+    "createdAt": "2026-04-10T05:24:43.130Z"
+  },
+  {
+    "tripId": "19547721-899f-4376-9a3f-18f55a585570",
+    "order": 5,
+    "name": "Goa, India",
+    "address": "Goa, India",
+    "location": {
+      "lat": 15.3004543,
+      "lng": 74.0855134
+    },
+    "type": "DROPOFF",
+    "id": "d1817318-263b-4c60-b230-b1ae09710432",
+    "createdAt": "2026-04-10T05:24:43.132Z"
+  },
+  {
+    "tripId": "bcac61cd-1444-4cf9-87c5-bb13144afbcc",
+    "order": 1,
+    "name": "VIT-AP University, Footpath to MH2",
+    "address": "VIT-AP University, Footpath to MH2, Ainavolu, Amaravati, Thullur, Guntur, Andhra Pradesh, 522237, India",
+    "location": {
+      "lat": 16.4928035,
+      "lng": 80.4982427
+    },
+    "type": "PICKUP",
+    "id": "88a98c43-dd44-448c-ad34-d352ab382d33",
+    "createdAt": "2026-04-10T05:27:46.982Z"
+  },
+  {
+    "tripId": "bcac61cd-1444-4cf9-87c5-bb13144afbcc",
+    "order": 2,
+    "name": "Guntur, Andhra Pradesh",
+    "address": "Guntur, Andhra Pradesh, 522001, India",
+    "location": {
+      "lat": 16.2915189,
+      "lng": 80.4541588
+    },
+    "type": "WAYPOINT",
+    "id": "03a13b89-e82d-4cd7-b80f-b06773459805",
+    "createdAt": "2026-04-10T05:27:46.984Z"
+  },
+  {
+    "tripId": "bcac61cd-1444-4cf9-87c5-bb13144afbcc",
+    "order": 3,
+    "name": "Goa, India",
+    "address": "Goa, India",
+    "location": {
+      "lat": 15.3004543,
+      "lng": 74.0855134
+    },
+    "type": "WAYPOINT",
+    "id": "f1cf2d05-e659-40d8-ae2d-375ae98439e8",
+    "createdAt": "2026-04-10T05:27:46.986Z"
+  },
+  {
+    "tripId": "90f35088-c809-463a-ab33-f691e4f63f04",
+    "order": 1,
+    "name": "Charminar Pickup",
+    "address": "Charminar, Hyderabad",
+    "location": {
+      "lat": 17.3616,
+      "lng": 78.4747
+    },
+    "type": "PICKUP",
+    "id": "1fadaab4-c06e-4838-9d68-17fa9fe2ab6e",
+    "createdAt": "2026-04-10T05:42:28.718Z"
+  },
+  {
+    "tripId": "90f35088-c809-463a-ab33-f691e4f63f04",
+    "order": 2,
+    "name": "Hussain Sagar",
+    "address": "Tank Bund, Hyderabad",
+    "location": {
+      "lat": 17.4239,
+      "lng": 78.4738
+    },
+    "type": "WAYPOINT",
+    "id": "3c4146ac-361a-4b60-80cc-c9b06bc4ccdd",
+    "createdAt": "2026-04-10T05:42:28.720Z"
+  },
+  {
+    "tripId": "90f35088-c809-463a-ab33-f691e4f63f04",
+    "order": 3,
+    "name": "Gachibowli IT Park",
+    "address": "Gachibowli, Hyderabad",
+    "location": {
+      "lat": 17.4401,
+      "lng": 78.3489
+    },
+    "type": "DROPOFF",
+    "id": "d0688869-780b-437b-a814-8589a7d10c7b",
+    "createdAt": "2026-04-10T05:42:28.722Z"
+  },
+  {
+    "tripId": "23b013aa-677f-46ef-b0e0-c8b7fa816608",
+    "order": 1,
+    "name": "Dabolim Airport",
+    "address": "Goa Airport",
+    "location": {
+      "lat": 15.3808,
+      "lng": 73.8314
+    },
+    "type": "PICKUP",
+    "id": "8e10f6f1-5aa8-425a-87c1-7d6a9e093b64",
+    "createdAt": "2026-04-10T05:42:28.725Z"
+  },
+  {
+    "tripId": "23b013aa-677f-46ef-b0e0-c8b7fa816608",
+    "order": 2,
+    "name": "Baga Beach",
+    "address": "Baga, North Goa",
+    "location": {
+      "lat": 15.5557,
+      "lng": 73.7557
+    },
+    "type": "WAYPOINT",
+    "id": "5a14c5f5-396d-4cfc-9efc-844a6287a311",
+    "createdAt": "2026-04-10T05:42:28.730Z"
+  },
+  {
+    "tripId": "23b013aa-677f-46ef-b0e0-c8b7fa816608",
+    "order": 3,
+    "name": "The Leela Goa",
+    "address": "Mobor, Cavelossim",
+    "location": {
+      "lat": 15.2581,
+      "lng": 73.9208
+    },
+    "type": "DROPOFF",
+    "id": "09dd0b4b-2ff2-4223-a549-02aa8e0eafa1",
+    "createdAt": "2026-04-10T05:42:28.733Z"
+  },
+  {
+    "tripId": "fa8780a7-77b6-4d55-bbb1-7b788ff8cb81",
+    "order": 1,
+    "name": "Kanaka Durga Temple",
+    "address": "Indrakeeladri, Vijayawada",
+    "location": {
+      "lat": 16.5193,
+      "lng": 80.6305
+    },
+    "type": "PICKUP",
+    "id": "439ea882-bb55-4fbd-9aff-c756337cedbe",
+    "createdAt": "2026-04-10T05:42:28.737Z"
+  },
+  {
+    "tripId": "fa8780a7-77b6-4d55-bbb1-7b788ff8cb81",
+    "order": 2,
+    "name": "Prakasam Barrage",
+    "address": "Krishna River, Vijayawada",
+    "location": {
+      "lat": 16.508,
+      "lng": 80.6156
+    },
+    "type": "WAYPOINT",
+    "id": "21173b00-a5a5-45a6-acac-e87aa0408928",
+    "createdAt": "2026-04-10T05:42:28.739Z"
+  },
+  {
+    "tripId": "fa8780a7-77b6-4d55-bbb1-7b788ff8cb81",
+    "order": 3,
+    "name": "Undavalli Caves",
+    "address": "Undavalli, Amaravati Road",
+    "location": {
+      "lat": 16.4753,
+      "lng": 80.6011
+    },
+    "type": "WAYPOINT",
+    "id": "ae3b644b-2d64-4e37-8d61-8cc5660fa2d7",
+    "createdAt": "2026-04-10T05:42:28.743Z"
+  },
+  {
+    "tripId": "fa8780a7-77b6-4d55-bbb1-7b788ff8cb81",
+    "order": 4,
+    "name": "Bhavani Island",
+    "address": "Krishna River, Vijayawada",
+    "location": {
+      "lat": 16.52,
+      "lng": 80.59
+    },
+    "type": "WAYPOINT",
+    "id": "141d24cf-7e33-4b5f-b472-6721cb40a219",
+    "createdAt": "2026-04-10T05:42:28.745Z"
+  },
+  {
+    "tripId": "fa8780a7-77b6-4d55-bbb1-7b788ff8cb81",
+    "order": 5,
+    "name": "Victoria Jubilee Museum",
+    "address": "Governorpet, Vijayawada",
+    "location": {
+      "lat": 16.5085,
+      "lng": 80.6212
+    },
+    "type": "DROPOFF",
+    "id": "adf98b5a-5a75-44b9-9c05-bb8278b554ca",
+    "createdAt": "2026-04-10T05:42:28.748Z"
+  },
+  {
+    "tripId": "72a094a3-9632-497a-85f9-b55a538ad4cb",
+    "order": 1,
+    "name": "VIT-AP University, Footpath to MH2",
+    "address": "VIT-AP University, Footpath to MH2, Ainavolu, Amaravati, Thullur, Guntur, Andhra Pradesh, 522237, India",
+    "location": {
+      "lat": 16.4928035,
+      "lng": 80.4982427
+    },
+    "type": "PICKUP",
+    "id": "26faf37e-5fc3-46e0-9523-39859e079d9e",
+    "createdAt": "2026-04-10T05:47:36.797Z"
+  },
+  {
+    "tripId": "72a094a3-9632-497a-85f9-b55a538ad4cb",
+    "order": 2,
+    "name": "Guntur, Andhra Pradesh",
+    "address": "Guntur, Andhra Pradesh, 522001, India",
+    "location": {
+      "lat": 16.2915189,
+      "lng": 80.4541588
+    },
+    "type": "WAYPOINT",
+    "id": "1033b88e-d3a9-414a-8f2b-4ac1e2be5306",
+    "createdAt": "2026-04-10T05:47:36.804Z"
+  },
+  {
+    "tripId": "72a094a3-9632-497a-85f9-b55a538ad4cb",
+    "order": 3,
+    "name": "Goa, India",
+    "address": "Goa, India",
+    "location": {
+      "lat": 15.3004543,
+      "lng": 74.0855134
+    },
+    "type": "DROPOFF",
+    "id": "cc83909b-8e2a-49d3-b6b5-0cb930d169b2",
+    "createdAt": "2026-04-10T05:47:36.811Z"
+  }
+]

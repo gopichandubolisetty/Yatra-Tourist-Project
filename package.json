@@ -1,0 +1,16 @@
+{
+  "name": "yatra",
+  "private": true,
+  "version": "1.0.0",
+  "description": "YATRA — Tourist Management System (MERN-style, JSON file storage)",
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "seed": "npm run seed --prefix server",
+    "dev": "concurrently -n server,client -c magenta,cyan \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,89 @@
+[
+  {
+    "bookingId": "d48dbd5d-2776-4d35-aab8-11ca7b28f5b5",
+    "amount": 9581,
+    "status": "SUCCESS",
+    "method": "upi",
+    "transactionId": "YATRA-TXN-466a88d9-63e8-4458-9f92-f557a2023110",
+    "gateway": "YatraPay",
+    "meta": {
+      "upiId": "demo@yatra"
+    },
+    "id": "167f3423-98b4-4b3a-bfbd-73888de9e71e",
+    "createdAt": "2026-04-10T05:06:59.326Z"
+  },
+  {
+    "bookingId": "d48dbd5d-2776-4d35-aab8-11ca7b28f5b5",
+    "amount": 9581,
+    "status": "SUCCESS",
+    "method": "refund",
+    "transactionId": "YATRA-REFUND-02b563aa",
+    "gateway": "YatraPay",
+    "note": "Refund processed (mock)",
+    "id": "7d637ef7-24e8-4d9a-b4ca-4b39a3c90f89",
+    "createdAt": "2026-04-10T05:07:30.856Z"
+  },
+  {
+    "bookingId": "c307b92d-afdd-48d4-a0ca-b7636135cb1a",
+    "amount": 16593,
+    "status": "SUCCESS",
+    "method": "card",
+    "transactionId": "YATRA-TXN-c1e253af-1cdb-41e2-af6d-aae8408ca5ac",
+    "gateway": "YatraPay",
+    "meta": {
+      "cardLast4": "3310"
+    },
+    "id": "5e3bd5c7-7889-4f17-93f5-289de0dade99",
+    "createdAt": "2026-04-10T05:11:33.654Z"
+  },
+  {
+    "bookingId": "c307b92d-afdd-48d4-a0ca-b7636135cb1a",
+    "amount": 16593,
+    "status": "SUCCESS",
+    "method": "refund",
+    "transactionId": "YATRA-REFUND-0c170dc7",
+    "gateway": "YatraPay",
+    "note": "Refund processed (mock)",
+    "id": "8de6f428-fe8b-4303-ad45-55db0f81acc8",
+    "createdAt": "2026-04-10T05:18:31.591Z"
+  },
+  {
+    "bookingId": "2a9b28b3-90c1-4dd5-8ceb-35d49421adc9",
+    "amount": 20431,
+    "status": "SUCCESS",
+    "method": "upi",
+    "transactionId": "YATRA-TXN-3efee434-d0f5-499d-923c-b9c4d68f4898",
+    "gateway": "YatraPay",
+    "meta": {
+      "upiId": "demo@yatra"
+    },
+    "id": "8d61975b-5acf-457d-a39b-906354eb9db7",
+    "createdAt": "2026-04-10T05:24:52.070Z"
+  },
+  {
+    "bookingId": "777197c2-c0f1-4fd0-941c-31f1f13e5993",
+    "amount": 8607,
+    "status": "SUCCESS",
+    "method": "upi",
+    "transactionId": "YATRA-TXN-2924f97f-1630-4b2a-89a9-def3ee9a2367",
+    "gateway": "YatraPay",
+    "meta": {
+      "upiId": "demo@yatra"
+    },
+    "id": "7c76049e-f5b1-48ec-ad60-2c03aa908f30",
+    "createdAt": "2026-04-10T05:27:53.773Z"
+  },
+  {
+    "bookingId": "2315ea4f-3be8-491b-b002-08a4be44dd33",
+    "amount": 12030,
+    "status": "SUCCESS",
+    "method": "upi",
+    "transactionId": "YATRA-TXN-c267068d-b8a8-43d3-adc7-18ba9ecff485",
+    "gateway": "YatraPay",
+    "meta": {
+      "upiId": "demo@yatra"
+    },
+    "id": "a108684a-daa2-46fc-b843-1d5836928850",
+    "createdAt": "2026-04-10T05:47:47.579Z"
+  }
+]
