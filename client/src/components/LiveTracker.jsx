@@ -96,8 +96,7 @@ export default function LiveTracker({ tripId, tripName, onStop }) {
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; OpenStreetMap contributors'
-            crossOrigin="anonymous"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           />
           <Recenter center={center} />
           {userPos && (

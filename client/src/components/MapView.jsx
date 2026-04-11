@@ -80,8 +80,7 @@ export default function MapView({
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; OpenStreetMap contributors'
-          crossOrigin="anonymous"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         />
         {positions.length > 0 && <FitBounds positions={positions} />}
         {polyline && polyline.length > 1 && (

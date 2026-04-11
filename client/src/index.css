@@ -18,7 +18,9 @@ body {
 }
 
 .leaflet-container {
-  @apply rounded-xl z-0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
 }
 
 .nav-link-underline {

@@ -1,3 +1,5 @@
+import 'leaflet/dist/leaflet.css';
+import './utils/fixLeafletIcon';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -5,8 +7,6 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
 import App from './App.jsx';
-import './utils/leafletFix';
-import 'leaflet/dist/leaflet.css';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

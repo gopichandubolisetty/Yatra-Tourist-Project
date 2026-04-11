@@ -1,9 +1,18 @@
+const getCategoryIcon = (category) => {
+  if (category === 'HOTEL') return '🏨';
+  if (category === 'RESTAURANT') return '🍽️';
+  return '📍';
+};
+
+const getCategoryColor = (category) => {
+  if (category === 'HOTEL') return 'from-orange-100 to-amber-100';
+  if (category === 'RESTAURANT') return 'from-green-100 to-emerald-100';
+  return 'from-blue-100 to-cyan-100';
+};
+
 export default function NearbyCard({ poi, onSelect, onBook }) {
   const kind = String(poi.category || poi.poiType || poi.type || '').toUpperCase();
   const canBook = kind === 'HOTEL' || kind === 'RESTAURANT';
-
-  const categoryEmoji =
-    kind === 'HOTEL' ? '🏨' : kind === 'RESTAURANT' ? '🍽️' : '📍';
 
   return (
     <article
@@ -13,8 +22,13 @@ export default function NearbyCard({ poi, onSelect, onBook }) {
       onKeyDown={(e) => e.key === 'Enter' && onSelect?.(poi)}
       className="bg-white rounded-2xl overflow-hidden border border-yatra-secondary/15 shadow-yatra hover:shadow-yatra-hover transition-all cursor-pointer"
     >
-      <div className="w-full h-48 flex items-center justify-center text-6xl bg-gradient-to-br from-orange-100 to-orange-200 rounded-t-2xl">
-        <span aria-hidden>{categoryEmoji}</span>
+      <div
+        className={`w-full h-48 flex flex-col items-center justify-center bg-gradient-to-br ${getCategoryColor(kind)} rounded-t-xl`}
+      >
+        <span className="text-6xl mb-2" aria-hidden>
+          {getCategoryIcon(kind)}
+        </span>
+        <span className="text-sm font-medium text-gray-500">{kind || poi.category}</span>
       </div>
       <div className="p-4">
         <div className="flex justify-between items-start gap-2">
