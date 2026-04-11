@@ -3,6 +3,7 @@ require('dotenv').config({ path: require('path').join(__dirname, '../../../.env'
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
+const mongoose = require('mongoose');
 const connectDB = require('./db');
 const { readData, writeData, insertOne, findByField } = require('./fileStore');
 const User = require('../models/User');
@@ -223,7 +224,24 @@ async function seed() {
   console.log('Login:', DEMO_EMAIL, '/', DEMO_PASSWORD);
 }
 
-seed().catch((e) => {
-  console.error(e);
+async function seedWithRetry(retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      await seed();
+      console.log('Seed completed successfully');
+      await mongoose.disconnect().catch(() => {});
+      process.exit(0);
+    } catch (error) {
+      console.log(`Seed attempt ${i + 1} failed:`, error.message);
+      await mongoose.disconnect().catch(() => {});
+      if (i < retries - 1) {
+        console.log('Retrying in 3 seconds...');
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+      }
+    }
+  }
+  console.log('All retry attempts failed');
   process.exit(1);
-});
+}
+
+seedWithRetry();

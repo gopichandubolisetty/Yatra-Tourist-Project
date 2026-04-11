@@ -121,13 +121,11 @@ export default function Landing() {
             View all states &amp; UTs
           </Link>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-4xl mx-auto">
           {[
             ['Goa', 'photo-1507525428034-b723cf961d3e'],
-            ['Rajasthan', 'photo-1524492412932-e14a62106c7b'],
             ['Kerala', 'photo-1602216056096-3b40cc0c9944'],
             ['Ladakh', 'photo-1589308078059-be1415eab4c3'],
-            ['Varanasi', 'photo-1561361058-6e0fcb0e9273'],
           ].map(([name, id]) => (
             <div key={name} className="relative aspect-square rounded-2xl overflow-hidden shadow-yatra group">
               <img
