@@ -1,14 +1,6 @@
 import { useEffect } from 'react';
 import { MapContainer, TileLayer, Polyline, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-});
 
 function saffronIcon() {
   return L.divIcon({
@@ -87,8 +79,9 @@ export default function MapView({
         scrollWheelZoom={scrollWheelZoom}
       >
         <TileLayer
-          attribution="© OpenStreetMap contributors | Yatra"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; OpenStreetMap contributors'
+          crossOrigin="anonymous"
         />
         {positions.length > 0 && <FitBounds positions={positions} />}
         {polyline && polyline.length > 1 && (

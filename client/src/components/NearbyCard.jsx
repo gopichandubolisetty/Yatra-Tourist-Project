@@ -2,6 +2,9 @@ export default function NearbyCard({ poi, onSelect, onBook }) {
   const kind = String(poi.category || poi.poiType || poi.type || '').toUpperCase();
   const canBook = kind === 'HOTEL' || kind === 'RESTAURANT';
 
+  const categoryEmoji =
+    kind === 'HOTEL' ? '🏨' : kind === 'RESTAURANT' ? '🍽️' : '📍';
+
   return (
     <article
       role="button"
@@ -10,17 +13,8 @@ export default function NearbyCard({ poi, onSelect, onBook }) {
       onKeyDown={(e) => e.key === 'Enter' && onSelect?.(poi)}
       className="bg-white rounded-2xl overflow-hidden border border-yatra-secondary/15 shadow-yatra hover:shadow-yatra-hover transition-all cursor-pointer"
     >
-      <div className="h-36 bg-yatra-secondary/10 overflow-hidden">
-        <img
-          src={poi.photoUrl}
-          alt=""
-          className="w-full h-full object-cover"
-          loading="lazy"
-          onError={(e) => {
-            e.target.src =
-              'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop';
-          }}
-        />
+      <div className="w-full h-48 flex items-center justify-center text-6xl bg-gradient-to-br from-orange-100 to-orange-200 rounded-t-2xl">
+        <span aria-hidden>{categoryEmoji}</span>
       </div>
       <div className="p-4">
         <div className="flex justify-between items-start gap-2">

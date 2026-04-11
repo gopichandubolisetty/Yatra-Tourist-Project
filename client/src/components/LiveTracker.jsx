@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import { useSocket } from '../context/SocketContext';
 
 function Recenter({ center, zoom }) {
@@ -96,8 +95,9 @@ export default function LiveTracker({ tripId, tripName, onStop }) {
           scrollWheelZoom
         >
           <TileLayer
-            attribution="© OpenStreetMap contributors | Yatra"
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; OpenStreetMap contributors'
+            crossOrigin="anonymous"
           />
           <Recenter center={center} />
           {userPos && (
